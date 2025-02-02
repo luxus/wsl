@@ -5,11 +5,17 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
-    inputs.home-manager.nixosModules.default 
+    inputs.home-manager.nixosModules.default
   ];
 
   wsl = {
@@ -17,10 +23,13 @@
     defaultUser = "luxus";
     startMenuLaunchers = true;
   };
-      programs.nix-ld.enable = true;
-      programs.zsh.enable = true;
-      users.defaultUserShell = pkgs.zsh;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs.nix-ld.enable = true;
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
